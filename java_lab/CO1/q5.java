@@ -4,7 +4,7 @@ import java.util.*;
 class cpu {
 	
 	int price ;
-	static RAM ram = new RAM();
+//	static RAM ram = new RAM();
 	Processor processor = new Processor();
 	Scanner scan = new Scanner(System.in);
 	
@@ -14,8 +14,8 @@ class cpu {
 	}
 	
 	 static class RAM {
-		int memory;
-		String manufacturer;
+		static int memory;
+		static String manufacturer;
 	}
 	
 	void insert() {
@@ -24,15 +24,15 @@ class cpu {
 		processor.no_cores = scan.nextInt();
 		processor.manufacturer = scan.next();
 		System.out.println("Enter the  size and manufacturer of the RAM");
-		ram.memory = scan.nextInt();
-		ram.manufacturer = scan.next();
+		RAM.memory = scan.nextInt();
+		RAM.manufacturer = scan.next();
 		System.out.println("Enter the price of the CPU");
 		this.price = scan.nextInt();
 	}
 	
 	void info() {
 		System.out.println("Processor Manufacturer :" + processor.manufacturer +" Number of  cores :" + processor.no_cores);
-		System.out.println("RAM Manufacturer :" + ram.manufacturer +" RAM size :" + ram.memory);
+		System.out.println("RAM Manufacturer :" + RAM.manufacturer +" RAM size :" + RAM.memory);
 		System.out.println("Price of the CPU: " + this.price);
 	}
 }

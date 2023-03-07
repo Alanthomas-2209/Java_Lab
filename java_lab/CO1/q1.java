@@ -1,4 +1,4 @@
-package java_lab;
+package java_lab.CO1;
 import java.util.*;
 
 class  product {
@@ -39,13 +39,13 @@ public class q1 {
 		
 		
 		if(obj1.price < obj2.price && obj1.price < obj2.price ) {
-				System.out.println(obj1.pcode + " has the lowest pricet");
+				System.out.println("product code  :" + obj1.pcode + " product name :" + obj1.pname + " has the lowest price (" + obj1.price + ")");
 		}
 		else if(obj2.price < obj3.price && obj2.price < obj1.price) {
-			System.out.println(obj2.pcode + " has the lowest price");
+			System.out.println("product code  :" + obj1.pcode + " product name :" + obj1.pname + " has the lowest price (" + obj1.price + ")");
 		}
 		else {
-			System.out.println(obj3.pcode + " has the lowest price");
+			System.out.println("product code  :" + obj1.pcode + " product name :" + obj1.pname + " has the lowest price (" + obj1.price + ")");
 		}
 	}
 

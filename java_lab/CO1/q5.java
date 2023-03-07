@@ -1,12 +1,12 @@
-package java_lab;
+package java_lab.CO1;
 import java.util.*;
 
 class cpu {
 	
 	int price ;
-	static RAM ram =new RAM();
+	static RAM ram = new RAM();
 	Processor processor = new Processor();
-	Scanner scan =new Scanner(System.in);
+	Scanner scan = new Scanner(System.in);
 	
 	class Processor {
 		int no_cores;
@@ -33,14 +33,13 @@ class cpu {
 	void info() {
 		System.out.println("Processor Manufacturer :" + processor.manufacturer +" Number of  cores :" + processor.no_cores);
 		System.out.println("RAM Manufacturer :" + ram.manufacturer +" RAM size :" + ram.memory);
-		System.out.println("Price of the CPU: "+this.price);
+		System.out.println("Price of the CPU: " + this.price);
 	}
 }
 public class q5 {
 
 	public static void main(String[] args) {
-		cpu product = new cpu(); 
-		
+		cpu product = new cpu();
 		product.insert();
 		product.info();
 	}

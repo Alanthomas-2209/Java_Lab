@@ -1,9 +1,11 @@
-package java_lab;
+package java_lab.CO1;
 import java.util.*;
 
 class matrix1 {
+
 	int[][] array1 =null;
 	int n;
+
 	void insert() {
 		Scanner scan = new Scanner(System.in);		
 		System.out.println("Enter the size of the N*N matrix");
@@ -11,28 +13,28 @@ class matrix1 {
 		this.array1 = new int[n][n];
 		
 		System.out.println("Enter the  array :");
-		for(int i = 0; i<n ;i++) {
+		for(int i = 0; i <n ;i++) {
 			for(int j = 0; j < n; j++) {
 				this.array1[i][j] = scan.nextInt();
 			}
 		}
 	}
-	
+
 	void isSymmetric() {
-		for(int i = 0; i<n ;i++) {
+		for(int i = 0; i <n ;i++) {
 			for(int j = 0; j < n; j++) {
 				if(this.array1[i][j] != this.array1[j][i]) {
-					System.out.println("This is not a sysmmetric matrix ..");
+					System.out.println("This is not a symmetric matrix ..");
 					return;
 				}
 			}
 		}
 		System.out.println("This is a symmetric matrix...");
 	}
-	
-	void display(){
-		 System.out.println("martix :");
-		 for(int i = 0; i<n ;i++) {
+
+	void display() {
+		 System.out.println("Martix :");
+		 for(int i = 0; i < n ;i++) {
 			 for(int j = 0; j < n; j++) {
 				 System.out.print(this.array1[i][j]+"\t");
 			 }
@@ -40,15 +42,19 @@ class matrix1 {
 		 }
 	 }
 }
+
 public class q4 {
 
 	public static void main(String[] args) {
-		matrix1 m =new matrix1();
-		
-		m.insert();
-		m.display();
-		m.isSymmetric();
-		
+		matrix1 m1 =new matrix1();
+		m1.insert();
+		m1.display();
+		m1.isSymmetric();
+
+		matrix1 m2 =new matrix1();
+		m2.insert();
+		m2.display();
+		m2.isSymmetric();
 	}
 
 }

@@ -1,4 +1,4 @@
-package java_lab;
+package java_lab.CO1;
 import java.util.*;
 
 class complex {

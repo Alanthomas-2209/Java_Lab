@@ -1,4 +1,4 @@
-package java_lab;
+package other.Test;
 import java.util.*;
 
 

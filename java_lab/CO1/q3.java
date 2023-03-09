@@ -6,7 +6,7 @@ class complex {
 	int complex;
 	
 	void display() {
-		System.out.println(this.real+"+ i"+this.complex);
+		System.out.println(this.real+" + "+this.complex + "i");
 	}
 	
 	void sum(complex n1,complex n2) {

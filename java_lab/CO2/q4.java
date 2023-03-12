@@ -62,7 +62,9 @@ public class q4 {
 
         Employee[] obj = new Employee[n];
         object.insert(obj);
+        System.out.println("Display Method:");
         object.display(obj);
+        System.out.println("Search Method:");
         object.search(obj);
     }
 }

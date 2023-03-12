@@ -1,4 +1,4 @@
-//package java_lab.CO2;
+package java_lab.CO2;
 import java.util.*;
 
 class functions {

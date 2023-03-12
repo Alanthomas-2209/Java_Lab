@@ -19,7 +19,6 @@ class Employee {
 }
 
 class Functions {
-
     Scanner scan = new Scanner(System.in);
 
     void insert(Employee[] obj){
@@ -31,6 +30,7 @@ class Functions {
             obj[i] = new Employee(id,name,salary);
         }
     }
+
     void search(Employee[] obj){
         int data;
         System.out.println("Enter the Employee ID :");
@@ -44,6 +44,7 @@ class Functions {
         }
         System.out.println("Employee ID not found:");
     }
+
     void display(Employee[] obj) {
         for(int k = 0; k < obj.length;k++){
             obj[k].show();

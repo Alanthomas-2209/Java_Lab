@@ -66,5 +66,6 @@ public class q4 {
         object.display(obj);
         System.out.println("Search Method:");
         object.search(obj);
+        object.search(obj);
     }
 }

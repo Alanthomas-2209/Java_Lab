@@ -3,7 +3,7 @@ package java_lab.other.Test;
 public class Constructor {
 
 }
-//A constructor is a special method that is called when an object is created. It is used to initialize the object's state, 
+//A constructor is a special method that is called when an object is created. It is used to initialize the object's state,
 //which includes setting the initial values of its member variables. Constructors are important because they ensure that an object is properly
 //initialized before it is used.
 

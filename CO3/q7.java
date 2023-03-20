@@ -29,14 +29,10 @@ class Order implements calculate {
             float price = scan.nextFloat();
             pObject[i] = new Product( id, name, quantity, price);
         }
+        this.NetAmount();
     }
     public double  Total(int quantity, float price) {
         return quantity * price;
-    }
-    public void NetAmount() {
-        for( int i = 0; i < pObject.length; i++){
-            this.Net_Amount += pObject[i].total;
-        }
     }
 
     class Product {
@@ -49,10 +45,15 @@ class Order implements calculate {
             this.Name = name;
             this.Quantity = quantity;
             this.unitPrice = Price;
-            this.unitPrice = (float)Total(this.Quantity,this.unitPrice);
+            this.total = (float)Total(this.Quantity,this.unitPrice);
         }
     }
 
+    public void NetAmount() {
+        for( int i = 0; i < pObject.length; i++){
+            this.Net_Amount += pObject[i].total;
+        }
+    }
     void display (){
         System.out.println("Order No:" + this.orderNo);
         System.out.println("Date:" + this.date);

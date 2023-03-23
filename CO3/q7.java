@@ -34,6 +34,11 @@ class Order implements calculate {
     public double  Total(int quantity, float price) {
         return quantity * price;
     }
+    public void NetAmount() {
+        for( int i = 0; i < pObject.length; i++){
+            this.Net_Amount += pObject[i].total;
+        }
+    }
 
     class Product {
         int ProductId, Quantity;
@@ -49,11 +54,7 @@ class Order implements calculate {
         }
     }
 
-    public void NetAmount() {
-        for( int i = 0; i < pObject.length; i++){
-            this.Net_Amount += pObject[i].total;
-        }
-    }
+
     void display (){
         System.out.println("Order No:" + this.orderNo);
         System.out.println("Date:" + this.date);
@@ -80,6 +81,7 @@ public class q7 {
         System.out.println("Displaying..........");
         for (int i = 0; i < object.length; i++) {
             object[i].display();
+            System.out.println();
         }
     }
 }

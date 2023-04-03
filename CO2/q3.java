@@ -1,4 +1,4 @@
-//package java_lab.CO2;
+package java_lab.CO2;
 import java.util.*;
 
 class functions {
@@ -92,6 +92,7 @@ public class q3 {
 					break;
 				}
 			}
+			System.out.println("-----------------------------------------------------------------------------------");
 		}while(choice != 0);
 		scan.close();
 	}

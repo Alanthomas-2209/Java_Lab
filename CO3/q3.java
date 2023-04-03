@@ -45,7 +45,7 @@ class Teachers extends Employees {
     }
 }
 
-class function {
+class functions {
     Scanner scan = new Scanner(System.in);
     Teachers[] object;
     void insert() {

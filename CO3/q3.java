@@ -1,5 +1,5 @@
+package java_lab.CO3;
 import java.util.*;
-
 class Person {
     String Name, Gender, Address;
     int Age;
@@ -45,7 +45,7 @@ class Teachers extends Employees {
     }
 }
 
-class functions {
+class Functions {
     Scanner scan = new Scanner(System.in);
     Teachers[] object;
     void insert() {
@@ -73,6 +73,7 @@ class functions {
     }
     void display() {
         for(int i = 0; i < object.length; i++) {
+            System.out.println();
             object[i].display();
             System.out.println("-------------------------------------------------------------------------------------------------");
         }
@@ -80,7 +81,7 @@ class functions {
 }
 public class q3 {
     public static void main(String[] args) {
-        function object = new function();
+        Functions object = new Functions();
         object.insert();
         object.display();
     }

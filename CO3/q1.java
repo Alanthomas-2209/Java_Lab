@@ -42,6 +42,14 @@ public class q1 {
                     System.out.println("Area of Rectangle: " + object.area(length,breadth));
                     break;
                 }
+                case 0:{
+                    System.out.println("Exiting.....");
+                    break;
+                }
+                default:{
+                    System.out.println("Invalid Options......!");
+                    break;
+                }
             }
         }while(choice!=0);
     }

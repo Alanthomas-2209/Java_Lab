@@ -11,7 +11,7 @@ class Client2 {
     {
 
         // Create client socket
-        Socket s = new Socket("localhost", 888);
+        Socket s = new Socket("172.20.33.247", 888);
 
         // to send data to the server
         DataOutputStream dos

@@ -4,7 +4,7 @@
 import java.io.*;
 import java.net.*;
 
-public class Server2 {
+class Server2 {
 
     public static void main(String args[])
             throws Exception
@@ -17,7 +17,7 @@ public class Server2 {
         Socket s = ss.accept();
         System.out.println("Connection established");
 
-                                      //to send data to the client
+        // to send data to the client
         PrintStream ps
                 = new PrintStream(s.getOutputStream());
 

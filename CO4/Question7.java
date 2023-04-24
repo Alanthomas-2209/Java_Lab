@@ -4,6 +4,7 @@ import java.util.LinkedList;
 class ProducerConsumer {
     private final LinkedList<Integer> buffer = new LinkedList<>();
     private final int Capacity = 5;
+    
     public void produce() throws InteruptedException {
         int value = 0;
         while(true) {
@@ -18,6 +19,7 @@ class ProducerConsumer {
             }
         }
     }
+
     public void consume() throws InterruptedException {
         while(true) {
             synchronized (this) {
@@ -34,6 +36,7 @@ class ProducerConsumer {
 }
 
 public class Question7 {
+
     public static void main(String[] Args) {
         ProducerConsumer pc = new ProducerConsumer();
         Thread producerThread = new Thread(() -> {
@@ -54,4 +57,5 @@ public class Question7 {
         producerThread.start();
         consumerThread.start();
     }
+
 }

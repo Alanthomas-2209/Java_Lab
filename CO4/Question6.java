@@ -28,7 +28,6 @@ class EvenNumberThread implements Runnable {
     public void run() {
         System.out.println("Even Number:");
         for (int i = 1; i <= n; i++) {
-
             System.out.println( i * 2 + " ");
         }
         System.out.println();

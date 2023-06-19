@@ -56,7 +56,7 @@ public class Question11 {
                     System.out.println("Exiting......!");
                 }
                 default -> {
-                    System.out.println("Enter any validation");
+                    System.out.println("Enter any valid option....!");
                 }
             }
         }

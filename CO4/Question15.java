@@ -12,7 +12,7 @@ public class Question15 {
 
         System.out.println("How many number want to insert:");
         int nInsert = scan.nextInt();
-        System.out.println("Enter the numbers to Enqueue:");
+        System.out.println("Enter the numbers to Insert:");
         for (int i = 0; i < nInsert; i++) {
             int value = scan.nextInt();
             set.add(value);
@@ -28,7 +28,7 @@ public class Question15 {
         display(set);
     }
     public static void display(Set set) {
-        System.out.println("Iterate through queue using Iterator:");
+        System.out.println("Iterate through LinkedHashset using Iterator:");
         Iterator iterator = set.iterator();
         while(iterator.hasNext())
             System.out.print(iterator.next() + "->");

@@ -15,9 +15,7 @@ public class Question13 {
         display(queue);
         System.out.println("\nHow many number want to delete:");
         int nDelete = scan.nextInt();
-        //System.out.println("Enter the numbers to delete:");
         for (int i = 0; i < nDelete; i++) {
-           // int value = scan.nextInt();
             queue.remove();
         }
         display(queue);

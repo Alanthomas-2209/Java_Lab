@@ -20,7 +20,7 @@ public class Question11 {
                 case 2 -> {
                     System.out.println("Enter the data :");
                     int value = scan.nextInt();
-                    System.out.println("Enter the data :");
+                    System.out.println("Enter the Index :");
                     int index = scan.nextInt();
                     list.add(index,value);
                 }
@@ -44,13 +44,14 @@ public class Question11 {
                     list.removeLast();
                 }
                 case 7 -> {
-                    System.out.println("Removed");
+                    System.out.println("List Cleared");
                     list.clear();
                 }
                 case 8 -> {
                     System.out.println("Displaying List");
                     Iterator<Integer> itr=list.iterator();
-                    while(itr.hasNext()){System.out.println(itr.next());}
+                    while(itr.hasNext()){System.out.print(itr.next() + "->");}
+                    System.out.println();
                 }
                 case 0 -> {
                     System.out.println("Exiting......!");

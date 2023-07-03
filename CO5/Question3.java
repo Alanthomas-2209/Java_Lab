@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Question3 extends Frame implements ActionListener {
+class Question3 extends Frame implements ActionListener {
     Label label1 , label2, label3, label4, label5;
     TextField txt1, txt2, txt3, txt4, txt5;
     Button btn1, btn2;
@@ -77,7 +77,7 @@ public class Question3 extends Frame implements ActionListener {
         }
         if (ae.getSource() == btn1){
             double avg =  (s1 + s2 + s3 + s4 + s5) / 5;
-            image picture
+            Image picture = getIconImage(getDocumentBase());
         }
         if(ae.getSource() == btn2){
             System.exit(0);

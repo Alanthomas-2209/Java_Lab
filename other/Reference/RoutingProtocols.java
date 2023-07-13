@@ -1,4 +1,4 @@
-package java_lab;
+package java_lab.other.Reference;
 
 import java.util.HashMap;
 import java.util.Map;

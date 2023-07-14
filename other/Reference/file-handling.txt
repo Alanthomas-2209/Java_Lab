@@ -1,0 +1,71 @@
+//Here's a complete example that reads a file and prints its content to the console:
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ReadFileExample {
+public static void main(String[] args) {
+String filePath = "path/to/your/file.txt";
+try (FileReader fileReader = new FileReader(filePath);
+BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+String line;
+while ((line = bufferedReader.readLine()) != null) {
+System.out.println(line);
+}
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+
+//Write
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteFileExample {
+public static void main(String[] args) {
+String filePath = "path/to/your/file.txt";
+try (FileWriter fileWriter = new FileWriter(filePath);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+bufferedWriter.write("Hello, World!");
+bufferedWriter.newLine();
+bufferedWriter.write("This is a sample file.");
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+
+//Content in subfolder
+
+import java.io.File;
+
+public class DisplayItemsAndSubfolders {
+public static void main(String[] args) {
+String folderPath = "path/to/your/folder";
+displayItemsAndSubfolders(folderPath);
+}
+
+private static void displayItemsAndSubfolders(String folderPath) {
+File folder = new File(folderPath);
+if (folder.exists() && folder.isDirectory()) {
+File[] files = folder.listFiles();
+if (files != null) {
+for (File file : files) {
+if (file.isDirectory()) {
+System.out.println("Directory: " + file.getName());
+displayItemsAndSubfolders(file.getAbsolutePath()); // Recursively call to display subfolders
+} else {
+System.out.println("File: " + file.getName());
+}
+}
+}
+} else {
+System.out.println("Invalid folder path or folder does not exist.");
+}
+}
+}
+

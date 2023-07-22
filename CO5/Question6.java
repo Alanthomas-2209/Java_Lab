@@ -5,22 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Question6 extends JFrame implements ActionListener {
-    private Choice shapeChoice;
+public class Question6 extends JFrame {
+    private JComboBox<String> shapeChoice;
     private ShapePanel shapePanel;
 
-    public ShapeDrawingApp() {
+    public Question6() {
         setTitle("Shape Drawing App");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 400);
 
-        // Create the Choice component and add shape options
-        shapeChoice = new Choice();
-        shapeChoice.add("Rectangle");
-        shapeChoice.add("Triangle");
-        shapeChoice.add("Square");
-        shapeChoice.add("Circle");
-        shapeChoice.addActionListener(this);
+        // Create the JComboBox component and add shape options
+        shapeChoice = new JComboBox<>(new String[] {"Rectangle", "Triangle", "Square", "Circle"});
+        shapeChoice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                shapePanel.repaint();
+            }
+        });
 
         // Create the panel to draw the shapes
         shapePanel = new ShapePanel();
@@ -32,28 +33,15 @@ public class Question6 extends JFrame implements ActionListener {
         contentPane.add(shapePanel, BorderLayout.CENTER);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Repaint the shape panel when the user selects a shape
-        shapePanel.repaint();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ShapeDrawingApp app = new ShapeDrawingApp();
-            app.setVisible(true);
-        });
-    }
-
     // Custom JPanel to draw the selected shape
     private class ShapePanel extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            // Get the selected shape from the Choice component
-            String selectedShape = shapeChoice.getSelectedItem();
+            // Get the selected shape from the JComboBox
+            String selectedShape = (String) shapeChoice.getSelectedItem();
 
-            // Draw the corresponding shape based on user's choice
+            // Draw the corresponding shape based on the user's choice
             if ("Rectangle".equals(selectedShape)) {
                 g.setColor(Color.RED);
                 g.fillRect(50, 50, 200, 100);
@@ -71,5 +59,11 @@ public class Question6 extends JFrame implements ActionListener {
             }
         }
     }
-}
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Question6 app = new Question6();
+            app.setVisible(true);
+        });
+    }
+}

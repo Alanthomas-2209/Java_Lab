@@ -3,62 +3,34 @@ package java_lab.CO6;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
+import java.util.Scanner;
 
 public class Question3 {
 
     public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        try {
-            System.out.print("Enter the source file location: ");
-            String sourceFilePath = reader.readLine();
+        Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Enter the destination file address: ");
-            String destinationFilePath = reader.readLine();
+        System.out.print("Enter the source file path: ");
+        String sourceFilePath = scanner.nextLine();
 
-            try {
-                copyFile(sourceFilePath, destinationFilePath);
-                System.out.println("File copied successfully.");
-            } catch (IOException e) {
-                System.out.println("An error occurred while copying the file.");
-                e.printStackTrace();
+        System.out.print("Enter the destination file path: ");
+        String destinationFilePath = scanner.nextLine();
+
+        try (FileInputStream fileinput = new FileInputStream(sourceFilePath);
+             FileOutputStream fileoutput = new FileOutputStream(destinationFilePath)) {
+
+            int i;
+            while ((i = fileinput.read()) != -1) {
+                fileoutput.write(i);
             }
+
+            System.out.println("File copied successfully.");
         } catch (IOException e) {
-            System.out.println("An error occurred while reading user input.");
+            System.out.println("An error occurred while copying the file.");
             e.printStackTrace();
         } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void copyFile(String sourceFilePath, String destinationFilePath) throws IOException {
-        FileInputStream inputStream = null;
-        FileOutputStream outputStream = null;
-
-        try {
-            inputStream = new FileInputStream(sourceFilePath);
-            outputStream = new FileOutputStream(destinationFilePath);
-
-            byte[] buffer = new byte[1024];
-            int length;
-
-            while ((length = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
-            }
-        } finally {
-            if (inputStream != null) {
-                inputStream.close();
-            }
-            if (outputStream != null) {
-                outputStream.close();
-            }
+            scanner.close();
         }
     }
 }
-

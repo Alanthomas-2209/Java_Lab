@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 public class Question3 extends Applet implements ActionListener {
     private TextField[] subjectFields;
     private Button calculateButton;
-    private Image happyFace, sadFace;
     private double percentage;
 
     public void init() {
@@ -27,10 +26,6 @@ public class Question3 extends Applet implements ActionListener {
         calculateButton = new Button("Calculate Percentage");
         calculateButton.addActionListener(this);
         add(calculateButton);
-
-        // Load the happy and sad face images
-        happyFace = getImage(getDocumentBase(), "happy_face.png");
-        sadFace = getImage(getDocumentBase(), "sad_face.png");
     }
 
     @Override
@@ -55,11 +50,73 @@ public class Question3 extends Applet implements ActionListener {
         // Display the percentage
         g.drawString("Percentage: " + percentage + "%", 20, 120);
 
+        // Calculate the center coordinates for drawing the faces
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+
+        // Set the size of the face
+        int faceSize = 100;
+
+        // Calculate the top-left coordinates for drawing the face at the center
+        int x = centerX - faceSize / 2;
+        int y = centerY - faceSize / 2;
+
         // Display the happy or sad face based on the percentage
         if (percentage > 50) {
-            g.drawImage(happyFace, 50, 50, this);
+            drawHappyFace(g, x, y, faceSize);
         } else {
-            g.drawImage(sadFace, 50, 50, this);
+            drawSadFace(g, x, y, faceSize);
         }
     }
+
+    private void drawHappyFace(Graphics g, int x, int y, int size) {
+        // Draw the happy face using simple shapes
+        g.setColor(Color.YELLOW);
+        g.fillOval(x, y, size, size);
+        g.setColor(Color.BLACK);
+        g.fillOval(x + size / 4, y + size / 2, size / 10, size / 10);
+        g.fillOval(x + 3 * size / 4 - size / 10, y + size / 2, size / 10, size / 10);
+        g.drawArc(x + size / 4, y + 3 * size / 5, size / 2, size / 4, 0, -180);
+    }
+
+    private void drawSadFace(Graphics g, int x, int y, int size) {
+        // Draw the sad face using simple shapes
+        g.setColor(Color.YELLOW);
+        g.fillOval(x, y, size, size);
+        g.setColor(Color.BLACK);
+        g.fillOval(x + size / 4, y + size / 2, size / 10, size / 10);
+        g.fillOval(x + 3 * size / 4 - size / 10, y + size / 2, size / 10, size / 10);
+        g.drawArc(x + size / 4, y + 2 * size / 5, size / 2, size / 4, 0, 180);
+    }
 }
+
+
+
+//// Display the happy or sad face based on the percentage
+//        if (percentage > 50) {
+//                drawHappyFace(g);
+//                } else {
+//                drawSadFace(g);
+//                }
+//                }
+//
+//private void drawHappyFace(Graphics g) {
+//        // Draw the happy face using simple shapes
+//        g.setColor(Color.YELLOW);
+//        g.fillOval(100, 100, 100, 100);
+//        g.setColor(Color.BLACK);
+//        g.fillOval(130, 140, 10, 10);
+//        g.fillOval(160, 140, 10, 10);
+//        g.drawArc(130, 160, 40, 20, 0, -180);
+//        }
+//
+//private void drawSadFace(Graphics g) {
+//        // Draw the sad face using simple shapes
+//        g.setColor(Color.YELLOW);
+//        g.fillOval(100, 100, 100, 100);
+//        g.setColor(Color.BLACK);
+//        g.fillOval(130, 140, 10, 10);
+//        g.fillOval(160, 140, 10, 10);
+//        g.drawArc(130, 160, 40, 20, 0, 180);
+//        }
+//        }

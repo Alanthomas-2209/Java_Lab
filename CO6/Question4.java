@@ -1,77 +1,55 @@
 package java_lab.CO6;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Question4 {
 
-    public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the path of the source file: ");
+        String sourceFilePath = scanner.nextLine();
+
+        System.out.print("Enter the path for the even numbers file: ");
+        String evenFilePath = scanner.nextLine();
+
+        System.out.print("Enter the path for the odd numbers file: ");
+        String oddFilePath = scanner.nextLine();
+
+        FileInputStream source = null;
+        FileOutputStream destinationEven = null;
+        FileOutputStream destinationOdd = null;
 
         try {
-            System.out.print("Enter the source file path: ");
-            String sourceFilePath = reader.readLine();
+            source = new FileInputStream(sourceFilePath);
+            destinationEven = new FileOutputStream(evenFilePath);
+            destinationOdd = new FileOutputStream(oddFilePath);
 
-            System.out.print("Enter the path for the file to store even numbers: ");
-            String evenNumbersFilePath = reader.readLine();
-
-            System.out.print("Enter the path for the file to store odd numbers: ");
-            String oddNumbersFilePath = reader.readLine();
-
-            try {
-                copyEvenAndOddNumbers(sourceFilePath, evenNumbersFilePath, oddNumbersFilePath);
-                System.out.println("Even and odd numbers copied successfully.");
-            } catch (IOException e) {
-                System.out.println("An error occurred while copying the numbers.");
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred while reading user input.");
-            e.printStackTrace();
-        } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void copyEvenAndOddNumbers(String sourceFilePath, String evenNumbersFilePath, String oddNumbersFilePath) throws IOException {
-        BufferedReader reader = null;
-        BufferedWriter evenWriter = null;
-        BufferedWriter oddWriter = null;
-
-        try {
-            reader = new BufferedReader(new FileReader(sourceFilePath));
-            evenWriter = new BufferedWriter(new FileWriter(evenNumbersFilePath));
-            oddWriter = new BufferedWriter(new FileWriter(oddNumbersFilePath));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                int number = Integer.parseInt(line);
-                if (number % 2 == 0) {
-                    evenWriter.write(line);
-                    evenWriter.newLine();
+            int i;
+            while ((i = source.read()) != -1) {
+                if (i % 2 == 0) {
+                    destinationEven.write(i);
                 } else {
-                    oddWriter.write(line);
-                    oddWriter.newLine();
+                    destinationOdd.write(i);
                 }
             }
+            System.out.println("Copied even and odd numbers to respective files.");
+        } catch (IOException e) {
+            System.out.println("An error occurred during file processing: " + e.getMessage());
         } finally {
-            if (reader != null) {
-                reader.close();
+            if (source != null) {
+                source.close();
             }
-            if (evenWriter != null) {
-                evenWriter.close();
+            if (destinationEven != null) {
+                destinationEven.close();
             }
-            if (oddWriter != null) {
-                oddWriter.close();
+            if (destinationOdd != null) {
+                destinationOdd.close();
             }
+            scanner.close();
         }
     }
 }

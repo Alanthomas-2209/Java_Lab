@@ -18,11 +18,25 @@ public class TCPServer {
             BufferedReader inFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter outToClient = new PrintWriter(clientSocket.getOutputStream(), true);
 
-            // Server loop: read input from the client and send back the response
-            String message;
-            while ((message = inFromClient.readLine()) != null) {
-                System.out.println("Received from client: " + message);
-                outToClient.println("Server says: " + message); // Echo the message back to the client
+            // Start a new thread to read messages from the client
+            Thread readThread = new Thread(() -> {
+                try {
+                    String message;
+                    while ((message = inFromClient.readLine()) != null) {
+                        System.out.println("Received from client: " + message);
+//                        outToClient.println(message); // Echo the message back to the client
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            readThread.start();
+
+            // Read input from the server console and send it to the client
+            BufferedReader inFromConsole = new BufferedReader(new InputStreamReader(System.in));
+            String serverMessage;
+            while ((serverMessage = inFromConsole.readLine()) != null) {
+                outToClient.println("Server says: " + serverMessage);
             }
 
             // Close the connection with the client

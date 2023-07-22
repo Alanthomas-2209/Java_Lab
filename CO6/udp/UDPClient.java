@@ -1,63 +1,52 @@
 package java_lab.CO6.udp;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
+import java.util.Scanner;
 
 public class UDPClient {
     public static void main(String[] args) {
-        try {
-            // Create a DatagramSocket for the client
-            DatagramSocket clientSocket = new DatagramSocket();
+        final String serverAddress = "192.168.1.62";
+        final int serverPort = 12345;
 
-            // Get the server's address (InetAddress) and port number
-            InetAddress serverAddress = InetAddress.getByName("localhost");
-            int serverPort = 12345;
+        try (DatagramSocket clientSocket = new DatagramSocket()) {
+            System.out.println("UDP Client started.");
 
-            // Create a BufferedReader to read user input
-            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-
-            // Client loop: read user input and send to the server
+            Scanner scanner = new Scanner(System.in);
             while (true) {
-                System.out.print("Enter a message (or 'exit' to quit): ");
-                String message = userInput.readLine();
+                // Get user input
+                System.out.print("Enter a message to send (or 'exit' to quit): ");
+                String clientMessage = scanner.nextLine();
 
-                // Check if the user wants to exit
-                if (message.equalsIgnoreCase("exit")) {
+                if ("exit".equalsIgnoreCase(clientMessage)) {
+                    System.out.println("Client exiting.");
                     break;
                 }
 
-                // Convert the message to bytes
-                byte[] sendData = message.getBytes();
+                // Prepare the message to send
+                byte[] sendBuffer = clientMessage.getBytes();
+                InetAddress serverIPAddress = InetAddress.getByName(serverAddress);
 
-                // Create a DatagramPacket to send the message to the server
-                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, serverPort);
-
-                // Send the packet to the server
+                // Send the message to the server
+                DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, serverIPAddress, serverPort);
                 clientSocket.send(sendPacket);
 
-                // Set up a buffer to receive the response from the server
-                byte[] receiveData = new byte[1024];
-
-                // Create a DatagramPacket to receive the response from the server
-                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-
-                // Receive the response packet from the server
+                // Receive the response from the server
+                byte[] receiveBuffer = new byte[1024];
+                DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                 clientSocket.receive(receivePacket);
 
-                // Convert the response data to a String
-                String response = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                System.out.println("Server response: " + response);
+                String serverResponse = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                System.out.println("Received from server: " + serverResponse);
             }
 
-            // Close the client socket when done
-            clientSocket.close();
+        } catch (SocketException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-

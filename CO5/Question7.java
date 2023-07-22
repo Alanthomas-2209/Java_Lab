@@ -1,87 +1,61 @@
 package java_lab.CO5;
 
+import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Question7 extends Frame implements MouseListener, WindowListener {
+public class Question7 extends Applet implements MouseListener, MouseMotionListener {
+    private String message = "";
 
-    public EventHandlingDemo() {
-        // Set up the frame properties
-        setTitle("Event Handling Demo");
-        setSize(300, 200);
-        setLocationRelativeTo(null); // Center the frame on the screen
-
-        // Register mouse listener and window listener
+    public void init() {
         addMouseListener(this);
-        addWindowListener(this);
+        addMouseMotionListener(this);
     }
 
     // MouseListener methods
-    @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+        message = "Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("Mouse Pressed at (" + e.getX() + ", " + e.getY() + ")");
+        message = "Mouse Pressed at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Mouse Released at (" + e.getX() + ", " + e.getY() + ")");
+        message = "Mouse Released at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("Mouse Entered the Frame");
+        message = "Mouse Entered at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
-        System.out.println("Mouse Exited the Frame");
+        message = "Mouse Exited at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    // WindowListener methods
-    @Override
-    public void windowOpened(WindowEvent e) {
-        System.out.println("Window Opened");
+    // MouseMotionListener methods
+    public void mouseMoved(MouseEvent e) {
+        message = "Mouse Moved at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    @Override
-    public void windowClosing(WindowEvent e) {
-        System.out.println("Window Closing");
-        System.exit(0); // Terminate the application when the window is closing
+    public void mouseDragged(MouseEvent e) {
+        message = "Mouse Dragged at (" + e.getX() + ", " + e.getY() + ")";
+        repaint();
     }
 
-    @Override
-    public void windowClosed(WindowEvent e) {
-        System.out.println("Window Closed");
+    // Applet lifecycle method for window closing event
+    public void stop() {
+        message = "Applet Stopping (Window Closing)";
+        repaint();
     }
 
-    @Override
-    public void windowIconified(WindowEvent e) {
-        System.out.println("Window Iconified");
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-        System.out.println("Window Deiconified");
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-        System.out.println("Window Activated");
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-        System.out.println("Window Deactivated");
-    }
-
-    public static void main(String[] args) {
-        EventHandlingDemo frame = new EventHandlingDemo();
-        frame.setVisible(true);
+    public void paint(Graphics g) {
+        g.drawString(message, 50, 50);
     }
 }
-
